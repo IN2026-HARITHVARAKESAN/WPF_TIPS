@@ -16,14 +16,17 @@ namespace Wpf_hands_on
     /// </summary>
     public partial class MainWindow : Window
     {
+        WikipediaDetails details = new WikipediaDetails() { Name = "Harith", Description = "Select some text from this description", IsFemale = true };
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = details;
         }
 
         private void TextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             TextBox? textBox = sender as TextBox;
+            details.SelectedText = textBox.SelectedText;
             txtSelection.Text = "Selected text is '";
             txtSelection.Text += textBox.SelectedText + "' with length of ";
             txtSelection.Text += textBox.SelectionLength;
@@ -33,6 +36,14 @@ namespace Wpf_hands_on
         {
             submitBtn.IsEnabled = false;
             submitBtn.Content = "Submitted";
+            MessageBox.Show(
+                "Name : " + details.Name
+                + "\nGender : " + (details.IsFemale ? "Female" : "Male")
+                + "\nStacks : " + ((bool)cStack.IsChecked ? "C# " : "")
+                                + ((bool)pythonStack.IsChecked ? "Python " : "")
+                                + ((bool)labviewStack.IsChecked ? "Labview " : "")
+                + "\nSelected Text : " + details.SelectedText
+            );
         }
 
         private void cbAllStack_Checked(object sender, RoutedEventArgs e)
@@ -52,5 +63,22 @@ namespace Wpf_hands_on
             else
                 cbAllStack.IsChecked = null;
         }
+
+        private void Male_Checked(object sender, RoutedEventArgs e)
+        {
+            details.IsFemale = false;
+        }
+        private void Female_Checked(object sender, RoutedEventArgs e)
+        {
+            details.IsFemale = true;
+        }
+    }
+
+    public class WikipediaDetails
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public bool IsFemale { get; set; }
+        public string SelectedText { get; set; }
     }
 }

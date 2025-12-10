@@ -36,10 +36,10 @@
             </StackPanel>
             
             <Label Grid.Row="1" Content="_Name :" Target="{Binding ElementName=txtName}"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="txtName" AcceptsReturn="True" TextWrapping="Wrap" SpellCheck.IsEnabled="True"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Name="txtName" Text="{Binding Name, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" SpellCheck.IsEnabled="True"/>
             
-            <Label Grid.Row="2" Content="Selection _text:" Target="{Binding ElementName=txtInput}"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Name="txtInput" SelectionChanged="TextBox_SelectionChanged"/>
+            <Label Grid.Row="2" Content="Description _text:" Target="{Binding ElementName=txtInput}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Name="txtInput" Text="{Binding Description, Mode=TwoWay}" SelectionChanged="TextBox_SelectionChanged"/>
             <TextBox Grid.Row="3" Grid.ColumnSpan="2" Name="txtSelection" Text="Default Text" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True"/>
 
             <StackPanel Margin="0,10" Grid.Row="4" Grid.ColumnSpan="2">
@@ -53,8 +53,8 @@
             </StackPanel>
 
             <Label Content="Gender :" Grid.Row="5"/>
-            <RadioButton Grid.Row="6" HorizontalAlignment="Center">Male</RadioButton>
-            <RadioButton Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center">Female</RadioButton>
+            <RadioButton Grid.Row="6" IsChecked="True" Checked="Male_Checked" HorizontalAlignment="Center">_Male</RadioButton>
+            <RadioButton Grid.Row="6" Grid.Column="1" IsChecked="{Binding IsFemale,Mode=TwoWay}" Checked="Female_Checked" HorizontalAlignment="Center">_Female</RadioButton>
             
             <Button Grid.Row="7" Grid.ColumnSpan="2" Name="submitBtn" Content="Submit" Click="submitBtn_Click"/>
         </Grid>
