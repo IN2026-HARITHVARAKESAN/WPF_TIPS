@@ -3,6 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:system="clr-namespace:System;assembly=mscorlib"
+		xmlns:local="clr-namespace:Wpf_hands_on"
         mc:Ignorable="d"
         Title="MainWindow" SizeToContent="Height" Width="250">
     <Window.Resources>
@@ -12,37 +14,34 @@
         <Style TargetType="Label">
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <local:GenderToBooleanConverter x:Key="GenderToBooleanConverter"/>
     </Window.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            
-            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+        <StackPanel Margin="10">
+            <TextBlock Text="{Binding Source={x:Static system:DateTime.Now}, StringFormat={}{0:dd-MM-yy,HH:mm:ss}}" FontSize="7" HorizontalAlignment="Right"/>
+            <StackPanel Orientation="Horizontal">
                 <Image Source="https://www.wikipedia.org/portal/wikipedia.org/assets/img/Wikipedia-logo-v2@1.5x.png" Height="44" Width="48"/>
                 <TextBlock Text="Wikipedia" FontWeight="ExtraBold" FontSize="25" Margin="10,0" VerticalAlignment="Center"/>
             </StackPanel>
-            
-            <Label Grid.Row="1" Content="_Name :" Target="{Binding ElementName=txtName}"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Name="txtName" Text="{Binding Name, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" SpellCheck.IsEnabled="True"/>
-            
-            <Label Grid.Row="2" Content="Description _text:" Target="{Binding ElementName=txtInput}"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Name="txtInput" Text="{Binding Description, Mode=TwoWay}" SelectionChanged="TextBox_SelectionChanged"/>
-            <TextBox Grid.Row="3" Grid.ColumnSpan="2" Name="txtSelection" Text="Default Text" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True"/>
 
-            <StackPanel Margin="0,10" Grid.Row="4" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="_Name :" Target="{Binding ElementName=txtName}"/>
+                <TextBox Grid.Column="1" Name="txtName" Text="{Binding Name, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" SpellCheck.IsEnabled="True"/>
+
+                <Label Grid.Row="1" Content="Description _text:" Target="{Binding ElementName=txtInput}"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="txtInput" Text="{Binding Description, Mode=TwoWay}" SelectionChanged="TextBox_SelectionChanged"/>
+            </Grid>
+            <TextBox Name="txtSelection" Text="Default Text" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True"/>
+
+            <StackPanel Margin="0,10">
                 <Label Content="Select Known _Stacks" Target="{Binding ElementName=cbAllStack}"/>
                 <CheckBox IsThreeState="True" Name="cbAllStack" Checked="cbAllStack_Checked" Unchecked="cbAllStack_Checked">All Stack</CheckBox>
                 <StackPanel Margin="10,5">
@@ -52,11 +51,35 @@
                 </StackPanel>
             </StackPanel>
 
-            <Label Content="Gender :" Grid.Row="5"/>
-            <RadioButton Grid.Row="6" IsChecked="True" Checked="Male_Checked" HorizontalAlignment="Center">_Male</RadioButton>
-            <RadioButton Grid.Row="6" Grid.Column="1" IsChecked="{Binding IsFemale,Mode=TwoWay}" Checked="Female_Checked" HorizontalAlignment="Center">_Female</RadioButton>
-            
-            <Button Grid.Row="7" Grid.ColumnSpan="2" Name="submitBtn" Content="Submit" Click="submitBtn_Click"/>
-        </Grid>
+            <Label Content="Gender :"/>
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <RadioButton IsChecked="True" Checked="Male_Checked" HorizontalAlignment="Center">_Male</RadioButton>
+                <RadioButton Grid.Column="1" IsChecked="{Binding Gender,Converter={StaticResource GenderToBooleanConverter},Mode=TwoWay}" Checked="Female_Checked" HorizontalAlignment="Center">_Female</RadioButton>
+            </Grid>
+
+            <StackPanel>
+                <Label Content="Projects :"/>
+                <ComboBox Name="projectTxt" SelectionChanged="projectTxt_SelectionChanged" IsEditable="True" Text="--Select"></ComboBox>
+            </StackPanel>
+
+            <StackPanel>
+                <Label Content="Select team members : "/>
+                <ListView Name="TeammatesList" HorizontalAlignment="Center" SelectionMode="Multiple" SelectionChanged="TeammatesList_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Stack" DisplayMemberBinding="{Binding Stack}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+            <Button Name="submitBtn" Content="Submit" Click="submitBtn_Click"/>
+        </StackPanel>
     </ScrollViewer>
 </Window>
