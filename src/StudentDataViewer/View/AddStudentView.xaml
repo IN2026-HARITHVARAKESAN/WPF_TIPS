@@ -8,7 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         AutomationProperties.AutomationId="AddStudentView"
-        Title="AddStudentView" Height="360" Width="400" WindowStyle="None"
+        Title="AddStudentView" Height="360" Width="400"
         AllowsTransparency="False" Background="{StaticResource StandardWhite}"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 

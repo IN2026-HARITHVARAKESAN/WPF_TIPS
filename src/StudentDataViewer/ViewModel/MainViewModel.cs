@@ -147,8 +147,6 @@ namespace StudentDataViewer.ViewModel
             {
                 SetStudentsToDisplay();
             };
-
-            SelectedStudent = Students[0];
         }
 
         /// <summary>
