@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="PrimaryGreen" Color="#67C090"/>
+    <SolidColorBrush x:Key="TitleBarText" Color="#0F0E0E"/>
+    <SolidColorBrush x:Key="DarkBlue" Color="#124170"/>
+    <SolidColorBrush x:Key="Red" Color="#E43636"/>
+    <SolidColorBrush x:Key="BlueGreen" Color="#1E93AB"/>
+    <SolidColorBrush x:Key="StandardWhite" Color="White"/>
+    <SolidColorBrush x:Key="StandardBlack" Color="Black"/>
+    <SolidColorBrush x:Key="StandardGray" Color="Gray"/>
+
+    <SolidColorBrush x:Key="DataGridAlternatingRow" Color="#F9F9F9"/>
+    <SolidColorBrush x:Key="DataGridLine" Color="#EEE"/>
+    <SolidColorBrush x:Key="DataGridHeaderBorder" Color="#DDD"/>
+    <SolidColorBrush x:Key="DataGridHighlight" Color="#E3F2FD"/>
+
+    <SolidColorBrush x:Key="LabelForeground" Color="#44444E"/>
+    
+</ResourceDictionary>

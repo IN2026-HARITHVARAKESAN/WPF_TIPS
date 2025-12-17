@@ -1,0 +1,105 @@
+﻿<Window x:Class="StudentDataViewer.View.EditStudentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:res ="clr-namespace:StudentDataViewer.Resources"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentDataViewer.View"
+        mc:Ignorable="d"
+        Title="EditStudentView"
+        AutomationProperties.AutomationId="EditStudentView"
+        Height="360" Width="400"
+        WindowStyle="None"
+        AllowsTransparency="False" Background="{StaticResource StandardWhite}"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Border BorderBrush="{StaticResource StandardGray}" BorderThickness="1">
+        <Grid>
+            <DockPanel VerticalAlignment="Top" Background="{StaticResource PrimaryGreen}" Height="40" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Image Source="pack://application:,,,/Resources/Images/logo.png" HorizontalAlignment="Left" Height="28" Margin="10,6,5,6"/>
+                <TextBlock Text="{x:Static res:Strings.TitleEditStudent}" VerticalAlignment="Center" FontFamily="Cascadia Mono" Foreground="{StaticResource TitleBarText}"/>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,10,0">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Margin" Value="0,0,10,0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button x:Name="CloseButton" Width="25" Height="25" Background="{StaticResource BlueGreen}" Content="&#x2715;" Foreground="{StaticResource StandardWhite}" FontSize="16" ToolTip="Close" Cursor="Hand" Command="{Binding CancelCommand}"/>
+                </StackPanel>
+            </DockPanel>
+            <Grid Margin="0,40,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10">
+                    <TextBlock Text="{x:Static res:Strings.TitleStudentId}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox x:Name="StudentId" Foreground="{StaticResource StandardGray}" VerticalContentAlignment="Center" Text="{Binding Student.StudentId}" IsReadOnly="True" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <TextBlock Foreground="{StaticResource Red}" FontSize="12" Text="" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10">
+                    <TextBlock Text="{x:Static res:Strings.TitleName}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox x:Name="Name"  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="160" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <TextBlock Foreground="{StaticResource Red}" FontSize="12" Text="{Binding NameError, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10">
+                    <TextBlock Text="{x:Static res:Strings.TitleDepartment}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
+                    <ComboBox x:Name="Department" SelectedValue="{Binding Student.Department, Mode=TwoWay}" SelectedValuePath="Content" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0">
+                        <ComboBoxItem Content="{x:Static res:Strings.DepartmentCSE}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.DepartmentIT}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.DepartmentAIDS}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.DepartmentMECH}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.DepartmentCIVIL}"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10">
+                    <TextBlock Text="{x:Static res:Strings.TitleSection}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
+                    <ComboBox x:Name="Section" SelectedValue="{Binding Student.Section, Mode=TwoWay}" SelectedValuePath="Content" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0">
+                        <ComboBoxItem Content="{x:Static res:Strings.SectionA}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.SectionB}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.SectionC}"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10">
+                    <TextBlock Text="{x:Static res:Strings.TitleYear}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
+                    <ComboBox x:Name="Year" SelectedValue="{Binding Student.Year, Mode=TwoWay}" SelectedValuePath="Content" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0">
+                        <ComboBoxItem Content="{x:Static res:Strings.Year1}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.Year2}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.Year3}"/>
+                        <ComboBoxItem Content="{x:Static res:Strings.Year4}"/>
+                    </ComboBox>
+                    <TextBlock Foreground="{StaticResource Red}" FontSize="12" Text="" />
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10">
+                    <TextBlock Text="{x:Static res:Strings.TitleCGPA}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox x:Name="CGPA" Text="{Binding Cgpa, UpdateSourceTrigger=PropertyChanged}" Height="25" Width="160" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <TextBlock Foreground="{StaticResource Red}" FontSize="12" Text="{Binding CgpaError, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
+                    <Button x:Name="AddStudentButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" BorderThickness="0" Padding="0" ToolTip="Add new student" Command="{Binding SaveCommand}" >
+                        <Border Background="{StaticResource DarkBlue}" CornerRadius="10" BorderThickness="2" Padding="10,5">
+                            <TextBlock Text="{x:Static res:Strings.ButtonSave}" Width="70" TextAlignment="Center" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Button>
+                    <Button x:Name="CancelButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" BorderThickness="0" Padding="0" ToolTip="Cancel" Command="{Binding CancelCommand}">
+                        <Border Background="{StaticResource Red}" CornerRadius="10" BorderThickness="2" Padding="10,5">
+                            <TextBlock Text="{x:Static res:Strings.ButtonCancel}" Width="65" TextAlignment="Center" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
