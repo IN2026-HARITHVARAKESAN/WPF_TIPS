@@ -8,7 +8,6 @@
         mc:Ignorable="d"
         Title="EditStudentView"
         AutomationProperties.AutomationId="EditStudentView"
-        x:Name="EditStudentViews"
         Height="360" Width="400"
         WindowStyle="None"
         AllowsTransparency="False" Background="{StaticResource StandardWhite}"
