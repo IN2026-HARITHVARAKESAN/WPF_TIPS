@@ -56,7 +56,7 @@
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Width="30">
                             <DataGridTemplateColumn.Header>
-                                <CheckBox x:Name="SelectAllCheckBox" Checked="SelectAllCheckBox_Checked" Unchecked="SelectAllCheckBox_Unchecked"/>
+                                <CheckBox x:Name="SelectAllCheckBox" AutomationProperties.AutomationId="SelectAllCheckBox" Checked="SelectAllCheckBox_Checked" Unchecked="SelectAllCheckBox_Unchecked"/>
                             </DataGridTemplateColumn.Header>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
