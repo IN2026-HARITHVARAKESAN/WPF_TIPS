@@ -71,15 +71,23 @@
         [Fact]
         public void ButtonClicking_EditStudentButton_ShouldOpenEditDialogBox()
         {
-            this.mainViewModel.SelectedStudent = this.mainViewModel.Students[0];
+            var sectionsComboBox = this.driver.FindElementByAccessibilityId("SectionsComboBox");
+            sectionsComboBox.Click();
+
+            var wait = new OpenQA.Selenium.Support.UI.WebDriverWait(this.driver, TimeSpan.FromSeconds(5));
+            var items = wait.Until(d => sectionsComboBox.FindElementsByClassName("ListBoxItem"));
+            items.First().Click();
+            var studentData = this.driver.FindElementsByAccessibilityId("StudentData").First();
+            studentData.Click();
+
             var editStudentButton = this.driver.FindElementByAccessibilityId("EditStudentButton");
             editStudentButton.Click();
 
             var editStudentDialogBox = this.driver.FindElementByAccessibilityId("EditStudentView");
 
-            // string studentId = editStudentDialogBox.FindElementByAccessibilityId("StudentId").Text;
+            string studentId = editStudentDialogBox.FindElementByAccessibilityId("StudentId").Text;
 
-            // Assert.Equal(mainViewModel.Students[0].StudentId, studentId);
+            Assert.Equal(this.mainViewModel.Students[0].StudentId, studentId);
             Assert.NotNull(editStudentDialogBox);
         }
 
@@ -89,25 +97,8 @@
             var addStudentButton = this.driver.FindElementByAccessibilityId("AddNewStudentButton");
             addStudentButton.Click();
 
-            WindowsElement addStudentDialogBox = null;
-            for (int i = 0; i < 10;  i++)
-            {
-                try
-                {
-                    addStudentDialogBox = this.driver.FindElementByAccessibilityId("AddStudentView");
-                    if (addStudentDialogBox.Displayed)
-                    {
-                        break;
-                    }
-                }
-                catch
-                {
-                    System.Threading.Thread.Sleep(500);
-                }
-            }
-
+            var addStudentDialogBox = this.driver.FindElementByAccessibilityId("AddStudentView");
             Assert.NotNull(addStudentDialogBox);
-            Assert.True(addStudentDialogBox.Displayed);
         }
     }
 }

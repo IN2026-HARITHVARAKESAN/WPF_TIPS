@@ -7,23 +7,23 @@
         xmlns:local="clr-namespace:StudentDataViewer.Views"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        AutomationProperties.AutomationId="AddStudentView"
         Title="AddStudentView" Height="360" Width="400"
+        WindowStyle="None"
         AllowsTransparency="False" Background="{StaticResource StandardWhite}"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
 
     <Border BorderBrush="{StaticResource StandardGray}" BorderThickness="1">
         <Grid>
             <DockPanel VerticalAlignment="Top" Background="{StaticResource PrimaryGreen}" Height="40" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
                 <Image Source="pack://application:,,,/Resources/Images/logo.png" HorizontalAlignment="Left" Height="28" Margin="10,6,5,6"/>
-                <TextBlock Text="{x:Static res:Strings.AddStudentTitle}" VerticalAlignment="Center" FontFamily="Cascadia Mono" Foreground="{StaticResource TitleBarText}"/>
+                <TextBlock AutomationProperties.AutomationId="AddStudentView" Text="{x:Static res:Strings.AddStudentTitle}" VerticalAlignment="Center" FontFamily="Cascadia Mono" Foreground="{StaticResource TitleBarText}"/>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,10,0">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
                             <Setter Property="Margin" Value="0,0,10,0"/>
                         </Style>
                     </StackPanel.Resources>
-                    <Button x:Name="CloseButton" Width="25" Height="25" Background="{StaticResource BlueGreen}" Content="&#x2715;" Foreground="{StaticResource StandardWhite}" FontSize="16" ToolTip="Close" Cursor="Hand" Click="CloseButton_Click"/>
+                    <Button x:Name="CloseButton" AutomationProperties.AutomationId="AddStudentCloseButton" Width="25" Height="25" Background="{StaticResource BlueGreen}" Content="&#x2715;" Foreground="{StaticResource StandardWhite}" FontSize="16" ToolTip="Close" Cursor="Hand" Click="CloseButton_Click"/>
                 </StackPanel>
             </DockPanel>
             <Grid Margin="0,40,0,0">
@@ -46,13 +46,13 @@
 
                 <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10">
                     <TextBlock Text="{x:Static res:Strings.TitleName}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox x:Name="Name"  Text="{Binding Validation.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Height="25" Width="160" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <TextBox x:Name="Name" AutomationProperties.AutomationId="Name" Text="{Binding Validation.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Height="25" Width="160" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0"/>
                     <TextBlock Foreground="{StaticResource Red}" FontSize="12" Text="{Binding Validation.NameError, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10">
                     <TextBlock Text="{x:Static res:Strings.TitleDepartment}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
-                    <ComboBox x:Name="Department" SelectedIndex="0" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0">
+                    <ComboBox x:Name="Department" AutomationProperties.AutomationId="Department" SelectedIndex="0" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0">
                         <ComboBoxItem Content="{x:Static res:Strings.DepartmentCSE}"/>
                         <ComboBoxItem Content="{x:Static res:Strings.DepartmentIT}"/>
                         <ComboBoxItem Content="{x:Static res:Strings.DepartmentAIDS}"/>
@@ -63,12 +63,12 @@
 
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10">
                     <TextBlock Text="{x:Static res:Strings.TitleSection}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
-                    <ComboBox x:Name="Section" IsEditable="True" ItemsSource="{Binding Sections}" Text="{Binding NewSection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" StaysOpenOnEdit="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <ComboBox x:Name="Section" AutomationProperties.AutomationId="Section" IsEditable="True" ItemsSource="{Binding Sections}" Text="{Binding NewSection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" StaysOpenOnEdit="True" IsTextSearchEnabled="True" IsTextSearchCaseSensitive="False" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10">
                     <TextBlock Text="{x:Static res:Strings.TitleYear}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
-                    <ComboBox x:Name="Year" SelectedIndex="0" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0">
+                    <ComboBox x:Name="Year" AutomationProperties.AutomationId="Year" SelectedIndex="0" Height="25" Width="160" HorizontalAlignment="Left" Margin="0,10,0,0">
                         <ComboBoxItem Content="{x:Static res:Strings.Year1}"/>
                         <ComboBoxItem Content="{x:Static res:Strings.Year2}"/>
                         <ComboBoxItem Content="{x:Static res:Strings.Year3}"/>
@@ -79,17 +79,17 @@
 
                 <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10">
                     <TextBlock Text="{x:Static res:Strings.TitleCGPA}" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
-                    <TextBox x:Name="CGPA" Text="{Binding Validation.Cgpa, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Height="25" Width="160" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <TextBox x:Name="CGPA" AutomationProperties.AutomationId="CGPA" Text="{Binding Validation.Cgpa, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Height="25" Width="160" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0"/>
                     <TextBlock Foreground="{StaticResource Red}" FontSize="12" Text="{Binding Validation.CgpaError, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
-                    <Button x:Name="AddStudentButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" BorderThickness="0" Padding="0" ToolTip="Add new student" Click="AddStudentButton_Click">
+                    <Button x:Name="AddStudentButton" AutomationProperties.AutomationId="AddStudentButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" BorderThickness="0" Padding="0" ToolTip="Add new student" Click="AddStudentButton_Click">
                         <Border Background="{StaticResource DarkBlue}" CornerRadius="10" BorderThickness="2" Padding="10,5">
                             <TextBlock Text="{x:Static res:Strings.ButtonAddStudent}" Width="70" TextAlignment="Center" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </Button>
-                    <Button x:Name="CancelButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" BorderThickness="0" Padding="0" ToolTip="Cancel" Click="CloseButton_Click">
+                    <Button x:Name="CancelButton" AutomationProperties.AutomationId="AddStudentCancelButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" BorderThickness="0" Padding="0" ToolTip="Cancel" Click="CloseButton_Click">
                         <Border Background="{StaticResource Red}" CornerRadius="10" BorderThickness="2" Padding="10,5">
                             <TextBlock Text="{x:Static res:Strings.ButtonCancel}" Width="65" TextAlignment="Center" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>

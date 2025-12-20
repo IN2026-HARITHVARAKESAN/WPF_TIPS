@@ -13,10 +13,10 @@
             <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,0,-31">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{x:Static res:Strings.TitleStudentDataList}" FontFamily="Cascadia Mono" FontSize="16" Margin="10,5"/>
-                    <ComboBox Width="60" Height="25" IsEditable="False" Margin="10,0,0,0" ItemsSource="{Binding SectionsWithAll}" SelectedItem="{Binding SelectedSection, Mode=TwoWay}"/>
+                    <ComboBox Width="60" Height="25" IsEditable="False" Margin="10,0,0,0" AutomationProperties.AutomationId="SectionsComboBox" ItemsSource="{Binding SectionsWithAll}" SelectedItem="{Binding SelectedSection, Mode=TwoWay}"/>
 
                 </StackPanel>
-                <DataGrid x:Name="StudentDataGrid" ItemsSource="{Binding StudentsToDisplay}" AutoGenerateColumns="False" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" GridLinesVisibility="All" RowHeaderWidth="0"
+                <DataGrid x:Name="StudentDataGrid" AutomationProperties.AutomationId="StudentDataGrid" ItemsSource="{Binding StudentsToDisplay}" AutoGenerateColumns="False" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" GridLinesVisibility="All" RowHeaderWidth="0"
                           Background="{StaticResource StandardWhite}" BorderThickness="0" Margin="12,0" Height="300" Width="auto"
                           RowBackground="{StaticResource StandardWhite}" Padding="0" SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
                           SelectionMode="Single" SelectionUnit="FullRow"
@@ -39,6 +39,7 @@
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Margin" Value="0"/>
+                            <Setter Property="AutomationProperties.AutomationId" Value="StudentData"/>
                         </Style>
                         </DataGrid.RowStyle>
                     <DataGrid.CellStyle>
@@ -64,7 +65,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="{x:Static res:Strings.TitleStudentId}" IsReadOnly="True" Width="70" Binding="{Binding StudentId}"/>
+                        <DataGridTextColumn Header="{x:Static res:Strings.TitleStudentId}" AutomationProperties.AutomationId="StudentId" IsReadOnly="True" Width="70" Binding="{Binding StudentId}"/>
                         <DataGridTextColumn Header="{x:Static res:Strings.TitleName}" IsReadOnly="True" Width="120" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="{x:Static res:Strings.TitleDepartment}" IsReadOnly="True" Width="100" Binding="{Binding Department}"/>
                         <DataGridTextColumn Header="{x:Static res:Strings.TitleSection}" IsReadOnly="True" Width="*" Binding="{Binding Section}"/>

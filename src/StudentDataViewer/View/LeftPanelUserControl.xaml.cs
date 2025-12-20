@@ -26,6 +26,11 @@ namespace StudentDataViewer.Views
         private void AddNewStudentButton_Click(object sender, RoutedEventArgs e)
         {
             _addStudentView = new AddStudentView(viewModel);
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow != null)
+            {
+                _addStudentView.Owner = parentWindow;
+            }
             _addStudentView.ShowDialog();
         }
 
@@ -61,6 +66,11 @@ namespace StudentDataViewer.Views
             if(viewModel.SelectedStudent != null)
             {
                 var editStudentView = new EditStudentView(viewModel.SelectedStudent, viewModel);
+                var parentWindow = Window.GetWindow(this);
+                if (parentWindow != null)
+                {
+                    editStudentView.Owner = parentWindow;
+                }
                 editStudentView.ShowDialog();
             }   
         }

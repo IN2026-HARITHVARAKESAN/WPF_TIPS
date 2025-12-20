@@ -13,7 +13,7 @@
         <StackPanel Margin="20">
             <TextBlock Text="Are you sure you want to delete this student?"
                    FontSize="16" Margin="0,0,0,20"/>
-            <ListView ItemsSource="{Binding SelectedStudents}" Width="354">
+            <ListView AutomationProperties.AutomationId="SelectedStudentsList" ItemsSource="{Binding SelectedStudents}" Width="354">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="ID" DisplayMemberBinding="{Binding StudentId}" Width="80"/>
@@ -24,12 +24,12 @@
             </ListView>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="Confirmationyes" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" ToolTip="Add new student" BorderThickness="0" Padding="0" Command="{Binding ConfirmCommand}">
+                <Button x:Name="Confirmationyes" AutomationProperties.AutomationId="ConfirmationYes" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" ToolTip="Add new student" BorderThickness="0" Padding="0" Command="{Binding ConfirmCommand}">
                     <Border Background="{StaticResource PrimaryGreen}" CornerRadius="10" BorderThickness="2" Padding="10,5">
                         <TextBlock Text="{x:Static res:Strings.ButtonYes}" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                 </Button>
-                <Button x:Name="ConfirmationNo" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" ToolTip="Add new student" BorderThickness="0" Padding="0" Command="{Binding CancelCommand}">
+                <Button x:Name="ConfirmationNo" AutomationProperties.AutomationId="ConfirmationNo" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" ToolTip="Add new student" BorderThickness="0" Padding="0" Command="{Binding CancelCommand}">
                     <Border Background="{StaticResource Red}" CornerRadius="10" BorderThickness="2" Padding="10,5">
                         <TextBlock Text="{x:Static res:Strings.ButtonNo}" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
