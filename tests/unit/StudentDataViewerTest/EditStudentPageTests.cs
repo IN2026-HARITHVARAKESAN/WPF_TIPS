@@ -19,6 +19,7 @@ public class EditStudentPageTests : IDisposable
     }
 
     [Fact]
+    [Trait("TestCaseId", "75849")]
     public void EditStudent_FullWorkflow_Test()
     {
         // 1. Main window should open with Student's data grid and 3 buttons

@@ -19,6 +19,7 @@ public class MainWindowTests : IDisposable
     }
 
     [Fact]
+    [Trait("TestCaseId", "75776")]
     public void MainWindow_OpenAndClose_Test()
     {
         // 1. Verify main window has DataGrid and Add/Edit/Delete buttons

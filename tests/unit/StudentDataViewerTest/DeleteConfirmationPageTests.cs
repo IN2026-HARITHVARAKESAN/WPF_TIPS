@@ -22,6 +22,7 @@ public class DeleteConfirmationPageTests : IDisposable
     }
 
     [Fact]
+    [Trait("TestCaseId", "75860")]
     public void DeleteConfirmation_FullWorkflow_Test()
     {
         // 1. Main window should open with Student's data grid and 3 buttons
