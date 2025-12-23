@@ -1,0 +1,241 @@
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using StudentDataViewer.Models;
+
+namespace StudentDataViewer.ViewModel
+{
+    public class MainViewModel : INotifyPropertyChanged
+    {
+        #region Private Fields
+
+        private ObservableCollection<Student> _students;
+        private ObservableCollection<Student> _studentsToDisplay;
+        private ObservableCollection<string> _sections;
+        private string _newSection;
+        private Student _selectedStudent;
+        private string _selectedSection;
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Validation view model to validate entered data in add student view
+        /// </summary>
+        public AddStudentViewModel Validation { get; set; }
+
+        /// <summary>
+        /// Holds the collection of students
+        /// </summary>
+        public ObservableCollection<Student> Students
+        {
+            get => _students;
+            set
+            {
+                _students = value;
+                OnPropertyChanged(nameof(Students));
+            }
+        }
+
+        /// <summary>
+        /// Collection of students to display in the data grid
+        /// </summary>
+        public ObservableCollection<Student> StudentsToDisplay
+        {
+            get => _studentsToDisplay;
+            set
+            {
+                _studentsToDisplay = value;
+                OnPropertyChanged(nameof(StudentsToDisplay));
+            }
+        }
+
+        /// <summary>
+        /// Collection of sections
+        /// </summary>
+        public ObservableCollection<string> Sections
+        {
+            get => _sections;
+            set
+            {
+                _sections = value;
+                OnPropertyChanged(nameof(Sections));
+            }
+        }
+
+        /// <summary>
+        /// Sections collection with "ALL" prepended for selection purposes
+        /// </summary>
+        public IEnumerable<string> SectionsWithAll
+        {
+            get
+            {
+                yield return "ALL";
+                foreach (var s in Sections)
+                    yield return s;
+            }
+        }
+
+        /// <summary>
+        /// It will update if User entered new section.
+        /// </summary>
+        public string NewSection
+        {
+            get => _newSection;
+            set
+            {
+                if (!string.IsNullOrEmpty(value))
+                    _newSection = value[0].ToString();
+                else
+                    _newSection = string.Empty;
+
+                OnPropertyChanged(nameof(NewSection));
+            }
+        }
+
+        /// <summary>
+        /// Holds user selected student from the table
+        /// </summary>
+        public Student SelectedStudent
+        {
+            get => _selectedStudent;
+            set
+            {
+                _selectedStudent = value;
+                OnPropertyChanged(nameof(SelectedStudent));
+            }
+        }
+
+        /// <summary>
+        /// Hold current selected section for filtering.
+        /// </summary>
+        public string SelectedSection
+        {
+            get => _selectedSection;
+            set
+            {
+                if (_selectedSection != value)
+                {
+                    _selectedSection = value;
+                    SetStudentsToDisplay();
+                    OnPropertyChanged(nameof(SelectedSection));
+                }
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Creates object for Students collection and generate test data.
+        /// </summary>
+        public MainViewModel()
+        {
+            Students = new ObservableCollection<Student>();
+            StudentsToDisplay = new ObservableCollection<Student>();
+            Sections = new ObservableCollection<string>();
+            Validation = new AddStudentViewModel();
+            GetTestDataForStudents();
+
+            Sections.CollectionChanged += (s, e) =>
+            {
+                OnPropertyChanged(nameof(SectionsWithAll));
+            };
+
+            Students.CollectionChanged += (s, e) =>
+            {
+                SetStudentsToDisplay();
+            };
+        }
+
+        /// <summary>
+        /// Add a student in the collection.
+        /// </summary>
+        /// <param name="student">Student object to add</param>
+        public void AddStudent(Student student)
+        {
+            Students.Add(student);
+        }
+
+        /// <summary>
+        /// Add a new section to the Sections collection if it does not exist
+        /// </summary>
+        public void AddNewSection()
+        {
+            string input = NewSection;
+            if (!string.IsNullOrWhiteSpace(input) && !Sections.Contains(input))
+            {
+                Sections.Add(input);
+            }
+        }
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        #endregion
+
+        #region Private Methods
+
+        private void SetStudentsToDisplay()
+        {
+            StudentsToDisplay.Clear();
+            if (SelectedSection == "ALL")
+            {
+                foreach (var student in Students)
+                {
+                    StudentsToDisplay.Add(student);
+                }
+                return;
+            }
+            foreach (var student in Students)
+            {
+                if (student != null && student.Section == SelectedSection)
+                {
+                    StudentsToDisplay.Add(student);
+                }
+            }
+        }
+
+        private void GetTestDataForStudents()
+        {
+            Students.Add(new Student
+            {
+                IsSelected = false,
+                StudentId = "S001",
+                Name = "Arun Kumar",
+                Department = "CSE",
+                Section = "A",
+                Year = 3,
+                Cgpa = 8.6
+            });
+            Students.Add(new Student
+            {
+                IsSelected = false,
+                StudentId = "S002",
+                Name = "Rahul Mehta",
+                Department = "MECH",
+                Section = "B",
+                Year = 4,
+                Cgpa = 8.2
+            });
+            Students.Add(new Student
+            {
+                IsSelected = false,
+                StudentId = "S003",
+                Name = "Priya Sharma",
+                Department = "CIVIL",
+                Section = "B",
+                Year = 2,
+                Cgpa = 7.9
+            });
+        }
+
+        #endregion
+    }
+}

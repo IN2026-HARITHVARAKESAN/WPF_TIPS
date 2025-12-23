@@ -1,0 +1,64 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+out/
+Executable/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# VS Code directory
+.vscode/
+
+# Rider directory
+.idea/
+
+# Visual Studio 2019 config folder
+.vs/
+
+# Build logs
+*.log
+
+# NCrunch
+*.ncrunch*
+.*crunch*.local.xml
+
+# Roslyn cache
+*.ide
+
+# Backup & Recycle Bin files
+*~ 
+*.bak
+*.tmp
+*.swp
+
+# NuGet
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+!**/[Pp]ackages/repositories.config
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# WPF designer files (optional, if you don't want to track generated files)
+*.g.i.cs
+*.g.cs
+*.i.cs
+*.baml
+
+# Publish Web Output
+*.Publish.xml
+
+# Others
+_ReSharper*/
+*.DotSettings.user
