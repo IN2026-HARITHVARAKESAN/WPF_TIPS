@@ -21,6 +21,7 @@ namespace StudentDataViewer.Views
             InitializeComponent();
             viewModel = new MainViewModel();
             DataContext = viewModel;
+            // Converter is now declared in XAML resources; no runtime registration needed.
         }
 
         private void AddNewStudentButton_Click(object sender, RoutedEventArgs e)
@@ -74,5 +75,24 @@ namespace StudentDataViewer.Views
                 editStudentView.ShowDialog();
             }   
         }
+    }
+
+    // Converter to scale mark (0-100) to bar height (max 200 px)
+    public class MarkToHeightConverter : System.Windows.Data.IValueConverter
+    {
+        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is int mark)
+            {
+                if (mark < 0) mark = 0;
+                if (mark > 100) mark = 100;
+                // scale to max 200px height
+                return (double)mark * 2.0;
+            }
+            return 0.0;
+        }
+
+        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+            => throw new System.NotSupportedException();
     }
 }

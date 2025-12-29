@@ -14,6 +14,7 @@ namespace StudentDataViewer.Models
         private string _section;
         private int _year;
         private double _cgpa;
+        private int _mark;
         private bool _isSelected;
 
         /// <summary>
@@ -91,6 +92,19 @@ namespace StudentDataViewer.Models
             {
                 _cgpa = value;
                 OnPropertyChanged(nameof(Cgpa));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the mark (0-100) of the student.
+        /// </summary>
+        public int Mark
+        {
+            get => _mark;
+            set
+            {
+                _mark = value;
+                OnPropertyChanged(nameof(Mark));
             }
         }
 

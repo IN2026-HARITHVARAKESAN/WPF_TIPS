@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 using StudentDataViewer.ViewModel;
 
@@ -29,22 +30,13 @@ namespace StudentDataViewer.Views
                 this.DragMove();
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e) => this.Close();
 
-        private void SetStudentId()
-        {
-            StudentId.Text = GenerateStudentId();
-        }
+        private void SetStudentId() => StudentId.Text = GenerateStudentId();
 
         private string GenerateStudentId()
         {
-            if(_mainViewModel.Students.Count == 0)
-            {
-                return "SOL001";
-            }
+            if (_mainViewModel.Students.Count == 0) return "SOL001";
             var lastStudentFullId = _mainViewModel.Students.Last().StudentId.ToString();
             var lastStudentRollNumber = lastStudentFullId.Substring(lastStudentFullId.Length - 3);
             var nextRollNumber = (int.Parse(lastStudentRollNumber) + 1).ToString(new string('0', lastStudentRollNumber.Length));
@@ -62,18 +54,22 @@ namespace StudentDataViewer.Views
                 string section = Section.Text.Length > 0 ? Section.Text[0].ToString() : string.Empty;
                 int year;
                 double cgpa;
+                int mark;
 
                 bool isYearValid = int.TryParse(Year.Text, out year);
                 bool isCgpaValid = double.TryParse(CGPA.Text, out cgpa);
+                bool isMarkValid = int.TryParse(Mark.Text, out mark);
+                bool isMarkInRange = isMarkValid && mark >= 0 && mark <= 100;
 
                 if (string.IsNullOrWhiteSpace(studentId) ||
                     string.IsNullOrWhiteSpace(name) ||
                     string.IsNullOrWhiteSpace(department) ||
                     section == string.Empty ||
                     !isYearValid ||
-                    !isCgpaValid)
+                    !isCgpaValid ||
+                    !isMarkInRange)
                 {
-                    MessageBox.Show("Please enter valid values for all fields.");
+                    MessageBox.Show("Please enter valid values for all fields. Mark should be between 0 and 100.");
                     return;
                 }
 
@@ -84,10 +80,12 @@ namespace StudentDataViewer.Views
                     Department = department,
                     Section = section,
                     Year = year,
-                    Cgpa = cgpa
+                    Cgpa = cgpa,
+                    Mark = mark
                 };
 
                 _mainViewModel.Students.Add(student);
+                _mainViewModel.RefreshMarksPlot();
                 MessageBox.Show($"New student {Name.Text} added to the list");
                 _mainViewModel.Validation = new AddStudentViewModel();
                 _mainViewModel.AddNewSection();

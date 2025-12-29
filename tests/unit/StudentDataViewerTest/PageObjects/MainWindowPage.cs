@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium.Appium.Windows;
+using OpenQA.Selenium;
 
 public class MainWindowPage
 {
@@ -29,6 +30,23 @@ public class MainWindowPage
 
     public WindowsElement DeleteStudentButton =>
         _session.FindElementByAccessibilityId("DeleteStudentButton");
+
+    // Try both AccessibilityId and Name for the marks plot container
+    public WindowsElement MarksPlotView
+    {
+        get
+        {
+            try
+            {
+                return _session.FindElementByAccessibilityId("MarksPlotView");
+            }
+            catch (WebDriverException)
+            {
+                // Fallback to element by name (in case AutomationId isn't exposed)
+                return _session.FindElementByName("Marks Graph (ID vs Mark)");
+            }
+        }
+    }
 
     public void Minimize() => MinimizeButton.Click();
 

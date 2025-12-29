@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace StudentDataViewer.ViewModel
 {
@@ -9,6 +10,7 @@ namespace StudentDataViewer.ViewModel
 
         private string _name;
         private string _cgpa;
+        private string _mark;
         private readonly Dictionary<string, string> Errors = new();
 
         #endregion
@@ -46,6 +48,21 @@ namespace StudentDataViewer.ViewModel
         }
 
         /// <summary>
+        /// Gets or sets the Mark of the student.
+        /// </summary>
+        public string Mark
+        {
+            get { return _mark; }
+            set
+            {
+                _mark = value;
+                ValidateMark();
+                OnPropertyChanged(nameof(Mark));
+                OnPropertyChanged(nameof(MarkError));
+            }
+        }
+
+        /// <summary>
         /// Indicates whether the view model currently has validation errors.
         /// </summary>
         public bool HasErrors => Errors.Count > 0;
@@ -59,6 +76,11 @@ namespace StudentDataViewer.ViewModel
         /// Holds the error message of CGPA field.
         /// </summary>
         public string? CgpaError => Errors.ContainsKey(nameof(Cgpa)) ? Errors[nameof(Cgpa)] : null;
+
+        /// <summary>
+        /// Holds the error message of Mark field.
+        /// </summary>
+        public string? MarkError => Errors.ContainsKey(nameof(Mark)) ? Errors[nameof(Mark)] : null;
 
         #endregion
 
@@ -78,7 +100,7 @@ namespace StudentDataViewer.ViewModel
         /// <returns>The error of the property </returns>
         public IEnumerable GetErrors(string? propertyName)
         {
-            if (Errors.ContainsKey(propertyName))
+            if (propertyName != null && Errors.ContainsKey(propertyName))
                 return Errors[propertyName];
             return null;
         }
@@ -134,6 +156,19 @@ namespace StudentDataViewer.ViewModel
             else if (value < 0 || value > 10)
             {
                 AddError(nameof(Cgpa), "CGPA should be between 0 and 10");
+            }
+        }
+
+        private void ValidateMark()
+        {
+            ClearError(nameof(Mark));
+            if (!int.TryParse(Mark, out int v))
+            {
+                AddError(nameof(Mark), "Enter valid Mark");
+            }
+            else if (v < 0 || v > 100)
+            {
+                AddError(nameof(Mark), "Mark should be between 0 and 100");
             }
         }
 

@@ -1,5 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
 using StudentDataViewer.Models;
 
 namespace StudentDataViewer.ViewModel
@@ -14,6 +18,7 @@ namespace StudentDataViewer.ViewModel
         private string _newSection;
         private Student _selectedStudent;
         private string _selectedSection;
+        private PlotModel _marksPlot;
 
         #endregion
 
@@ -123,6 +128,19 @@ namespace StudentDataViewer.ViewModel
             }
         }
 
+        /// <summary>
+        /// Plot model for displaying marks
+        /// </summary>
+        public PlotModel MarksPlot
+        {
+            get => _marksPlot;
+            private set
+            {
+                _marksPlot = value;
+                OnPropertyChanged(nameof(MarksPlot));
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -146,7 +164,10 @@ namespace StudentDataViewer.ViewModel
             Students.CollectionChanged += (s, e) =>
             {
                 SetStudentsToDisplay();
+                RefreshMarksPlot();
             };
+
+            BuildMarksPlot();
         }
 
         /// <summary>
@@ -156,6 +177,7 @@ namespace StudentDataViewer.ViewModel
         public void AddStudent(Student student)
         {
             Students.Add(student);
+            RefreshMarksPlot();
         }
 
         /// <summary>
@@ -168,6 +190,44 @@ namespace StudentDataViewer.ViewModel
             {
                 Sections.Add(input);
             }
+        }
+
+        /// <summary>
+        /// Refreshes the marks plot based on the current data.
+        /// </summary>
+        public void RefreshMarksPlot()
+        {
+            var data = StudentsToDisplay?.ToList() ?? Students.ToList();
+            var pm = new PlotModel { Title = "Marks (ID vs Mark)" };
+
+            // Horizontal bar chart: Category on Y, values on X
+            pm.Axes.Add(new CategoryAxis
+            {
+                Position = AxisPosition.Left,
+                ItemsSource = data,
+                LabelField = nameof(Student.StudentId),
+                IsZoomEnabled = true,
+                IsPanEnabled = true
+            });
+
+            pm.Axes.Add(new LinearAxis
+            {
+                Position = AxisPosition.Bottom,
+                Minimum = 0,
+                Maximum = 100,
+                Title = "Mark",
+                MajorStep = 10
+            });
+
+            var series = new BarSeries
+            {
+                ItemsSource = data.Select(s => new BarItem(s.Mark)),
+                FillColor = OxyColors.ForestGreen,
+                LabelFormatString = "{0}"
+            };
+
+            pm.Series.Add(series);
+            MarksPlot = pm;
         }
 
         /// <summary>
@@ -191,15 +251,18 @@ namespace StudentDataViewer.ViewModel
                 {
                     StudentsToDisplay.Add(student);
                 }
-                return;
             }
-            foreach (var student in Students)
+            else
             {
-                if (student != null && student.Section == SelectedSection)
+                foreach (var student in Students)
                 {
-                    StudentsToDisplay.Add(student);
+                    if (student != null && student.Section == SelectedSection)
+                    {
+                        StudentsToDisplay.Add(student);
+                    }
                 }
             }
+            RefreshMarksPlot();
         }
 
         private void GetTestDataForStudents()
@@ -212,7 +275,8 @@ namespace StudentDataViewer.ViewModel
                 Department = "CSE",
                 Section = "A",
                 Year = 3,
-                Cgpa = 8.6
+                Cgpa = 8.6,
+                Mark = 85
             });
             Students.Add(new Student
             {
@@ -222,7 +286,8 @@ namespace StudentDataViewer.ViewModel
                 Department = "MECH",
                 Section = "B",
                 Year = 4,
-                Cgpa = 8.2
+                Cgpa = 8.2,
+                Mark = 78
             });
             Students.Add(new Student
             {
@@ -232,9 +297,12 @@ namespace StudentDataViewer.ViewModel
                 Department = "CIVIL",
                 Section = "B",
                 Year = 2,
-                Cgpa = 7.9
+                Cgpa = 7.9,
+                Mark = 72
             });
         }
+
+        private void BuildMarksPlot() => RefreshMarksPlot();
 
         #endregion
     }

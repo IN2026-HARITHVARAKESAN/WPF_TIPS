@@ -25,11 +25,12 @@ public class AddStudentPageTests : IDisposable
     [Trait("TestCaseId", "75839")]
     public void AddStudent_FullWorkflow_Test()
     {
-        // 1. Main window should open with Student's data grid and 3 buttons
+        // 1. Main window should open with Student's data grid, buttons and graph
         Assert.NotNull(_mainWindow.StudentDataGrid);
         Assert.NotNull(_mainWindow.AddNewStudentButton);
         Assert.NotNull(_mainWindow.EditStudentButton);
         Assert.NotNull(_mainWindow.DeleteStudentButton);
+        Assert.NotNull(_mainWindow.MarksPlotView);
 
         // 2. Click Add New Student Button
         _mainWindow.AddNewStudent();
@@ -72,11 +73,16 @@ public class AddStudentPageTests : IDisposable
         _addStudent.CGPATextBox.SendKeys("8.5");
         Assert.Equal("8.5", _addStudent.CGPATextBox.Text);
 
-        // 10. Click Add Student Button
+        // 10. Enter Mark (e.g., 78)
+        _addStudent.MarkTextBox.Clear();
+        _addStudent.MarkTextBox.SendKeys("78");
+        Assert.Equal("78", _addStudent.MarkTextBox.Text);
+
+        // 11. Click Add Student Button
         _addStudent.AddStudent();
         Thread.Sleep(500); // Wait for message box to appear
 
-        // 11. Handle Message Box (assume standard Windows message box)
+        // 12. Handle Message Box (assume standard Windows message box)
         var popupWindow = _session.WindowHandles.Last();
         _session.SwitchTo().Window(popupWindow);
         var messageBox = _session.FindElementByName("OK");
@@ -84,7 +90,7 @@ public class AddStudentPageTests : IDisposable
         messageBox.Click();
         Thread.Sleep(500); // Wait for popup and add window to close
 
-        // 12. Select section "B" in Students data list
+        // 13. Select section "B" in Students data list
         _session.SwitchTo().Window(_session.WindowHandles.First());
         _mainWindow.SectionsComboBox.Click();
         _mainWindow.SectionsComboBox.SendKeys("B");
@@ -103,6 +109,13 @@ public class AddStudentPageTests : IDisposable
             }
         }
         Assert.True(found, "Newly added student 'Harith' should be present in the grid.");
+
+        // Verify Mark shows in grid (Mark column text appears as 78)
+        var markCells = _mainWindow.StudentDataGrid.FindElementsByXPath("//DataItem/Custom[last()]");
+        Assert.Contains(markCells, c => c.Text.Contains("78"));
+
+        // Verify graph exists (basic presence, AutomationId is set)
+        Assert.True(_mainWindow.MarksPlotView.Displayed);
     }
 
     public void Dispose()

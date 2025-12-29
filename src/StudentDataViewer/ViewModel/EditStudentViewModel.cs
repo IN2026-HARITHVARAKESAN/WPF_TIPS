@@ -17,6 +17,7 @@ namespace StudentDataViewer.ViewModel
         private Student _student;
         private string _name;
         private string _cgpa;
+        private string _mark;
         private readonly MainViewModel _mainViewModel;
         private readonly Dictionary<string, string> Errors = new();
 
@@ -55,6 +56,7 @@ namespace StudentDataViewer.ViewModel
                 _student = value;
                 Name = _student.Name;
                 Cgpa = _student.Cgpa.ToString();
+                Mark = _student.Mark.ToString();
             }
         }
 
@@ -92,6 +94,24 @@ namespace StudentDataViewer.ViewModel
             }
         }
 
+        /// <summary>
+        /// Gets or sets the Mark of the student as string.
+        /// </summary>
+        public string Mark
+        {
+            get => _mark;
+            set
+            {
+                _mark = value;
+                if (int.TryParse(_mark, out int m))
+                    Student.Mark = m;
+
+                ValidateMark();
+                OnPropertyChanged(nameof(Mark));
+                OnPropertyChanged(nameof(MarkError));
+            }
+        }
+
         #region Validation
 
         /// <summary>
@@ -120,6 +140,11 @@ namespace StudentDataViewer.ViewModel
         /// Returns validation error message for the Cgpa property if present.
         /// </summary>
         public string? CgpaError => Errors.ContainsKey(nameof(Cgpa)) ? Errors[nameof(Cgpa)] : null;
+
+        /// <summary>
+        /// Returns validation error message for the Mark property if present.
+        /// </summary>
+        public string? MarkError => Errors.ContainsKey(nameof(Mark)) ? Errors[nameof(Mark)] : null;
 
         #endregion
 
@@ -180,6 +205,15 @@ namespace StudentDataViewer.ViewModel
                 AddError(nameof(Cgpa), "CGPA should be between 0 and 10");
         }
 
+        private void ValidateMark()
+        {
+            ClearError(nameof(Mark));
+            if (!int.TryParse(Mark, out int v))
+                AddError(nameof(Mark), "Enter valid Mark");
+            else if (v < 0 || v > 100)
+                AddError(nameof(Mark), "Mark should be between 0 and 100");
+        }
+
         private void OnCancel()
         {
             CloseRequested?.Invoke(true);
@@ -196,8 +230,11 @@ namespace StudentDataViewer.ViewModel
                     studentRecord.Section = Student.Section;
                     studentRecord.Year = Student.Year;
                     studentRecord.Cgpa = Student.Cgpa;
+                    studentRecord.Mark = Student.Mark;
                 }
             }
+            // trigger chart refresh
+            _mainViewModel.RefreshMarksPlot();
             CloseRequested?.Invoke(true);
         }
 

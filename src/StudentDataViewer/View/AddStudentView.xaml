@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:StudentDataViewer.Views"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="AddStudentView" Height="360" Width="400"
+        Title="AddStudentView" Height="450" Width="420"
         WindowStyle="None"
         AllowsTransparency="False" Background="{StaticResource StandardWhite}"
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
@@ -32,6 +32,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -83,7 +84,13 @@
                     <TextBlock Foreground="{StaticResource Red}" FontSize="12" Text="{Binding Validation.CgpaError, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
+                <StackPanel Orientation="Vertical" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10">
+                    <TextBlock Text="Mark" FontFamily="Cascadia Mono" FontSize="16" Foreground="{StaticResource LabelForeground}"/>
+                    <TextBox x:Name="Mark" AutomationProperties.AutomationId="Mark" Text="{Binding Validation.Mark, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Height="25" Width="160" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <TextBlock Foreground="{StaticResource Red}" FontSize="12" Text="{Binding Validation.MarkError, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
                     <Button x:Name="AddStudentButton" AutomationProperties.AutomationId="AddStudentButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" BorderThickness="0" Padding="0" ToolTip="Add new student" Click="AddStudentButton_Click">
                         <Border Background="{StaticResource DarkBlue}" CornerRadius="10" BorderThickness="2" Padding="10,5">
                             <TextBlock Text="{x:Static res:Strings.ButtonAddStudent}" Width="70" TextAlignment="Center" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>

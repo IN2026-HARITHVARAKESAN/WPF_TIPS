@@ -55,13 +55,19 @@ public class EditStudentPageTests : IDisposable
         Assert.True(_editStudent.SaveButton.Displayed);
         Assert.True(_editStudent.CloseButton.Displayed);
 
-        // 6. Change the name of the student in the Name text box
+        // 6. Change the name of the student
         string newName = "Harith";
         _editStudent.NameTextBox.Clear();
         _editStudent.NameTextBox.SendKeys(newName);
         Assert.Equal(newName, _editStudent.NameTextBox.Text);
 
-        // 7. Click Save Button
+        // 7. Change the mark of the student
+        var markBox = _session.FindElementByAccessibilityId("Mark");
+        markBox.Clear();
+        markBox.SendKeys("66");
+        Assert.Equal("66", markBox.Text);
+
+        // 8. Save
         _editStudent.Save();
         Assert.Throws<OpenQA.Selenium.WebDriverException>(() =>
             _editStudent.NameTextBox.Displayed);
@@ -70,11 +76,14 @@ public class EditStudentPageTests : IDisposable
         var firstRowName = _mainWindow.StudentDataGrid.FindElementByXPath("//DataItem[1]/Custom[3]");
         Assert.Equal("Harith", firstRowName.Text);
 
-        // 8. Click Edit Student Button again
+        // Verify graph control exists
+        Assert.True(_mainWindow.MarksPlotView.Displayed);
+
+        // 9. Open edit again
         _mainWindow.EditStudent();
         Assert.True(_editStudent.NameTextBox.Displayed);
 
-        // 9. Click Cancel Button
+        // 10. Cancel
         _editStudent.Cancel();
         Assert.Throws<OpenQA.Selenium.WebDriverException>(() =>
             _editStudent.NameTextBox.Displayed);

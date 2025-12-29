@@ -25,11 +25,12 @@ public class DeleteConfirmationPageTests : IDisposable
     [Trait("TestCaseId", "75860")]
     public void DeleteConfirmation_FullWorkflow_Test()
     {
-        // 1. Main window should open with Student's data grid and 3 buttons
+        // 1. Main window should open with Student's data grid, buttons and graph
         Assert.NotNull(_mainWindow.StudentDataGrid);
         Assert.NotNull(_mainWindow.AddNewStudentButton);
         Assert.NotNull(_mainWindow.EditStudentButton);
         Assert.NotNull(_mainWindow.DeleteStudentButton);
+        Assert.NotNull(_mainWindow.MarksPlotView);
 
         // 2. Click Delete Button (no selection)
         _mainWindow.DeleteStudent();
@@ -53,31 +54,34 @@ public class DeleteConfirmationPageTests : IDisposable
         // 5. Click checkbox of the first student
         var firstRowCheckbox = _mainWindow.StudentDataGrid.FindElementByXPath("//DataItem[1]//CheckBox");
         firstRowCheckbox.Click();
-            Thread.Sleep(200); // allow UI to update
-            var toggleState = firstRowCheckbox.GetAttribute("Toggle.ToggleState");
-            Assert.True(toggleState == "1", $"Expected ToggleState=1 but got {toggleState}");
+        Thread.Sleep(200); // allow UI to update
+        var toggleState = firstRowCheckbox.GetAttribute("Toggle.ToggleState");
+        Assert.True(toggleState == "1", $"Expected ToggleState=1 but got {toggleState}");
 
-            // Capture row count before delete
-            var beforeRows = _mainWindow.StudentDataGrid.FindElementsByXPath("//DataItem");
-            var rowsCountBefore = beforeRows.Count;
+        // Capture row count before delete
+        var beforeRows = _mainWindow.StudentDataGrid.FindElementsByXPath("//DataItem");
+        var rowsCountBefore = beforeRows.Count;
 
-            // 6. Click Delete Button
-            _mainWindow.DeleteStudent();
-            Assert.True(WaitUntil(() => _deleteConfirmation.SelectedStudentsList.Displayed));
-            var selectedListItems = _deleteConfirmation.SelectedStudentsList.FindElementsByClassName("ListViewItem");
-            Assert.NotEmpty(selectedListItems);
-            // Capture the text of the to-be-deleted item BEFORE confirming
-            var candidateText = selectedListItems[0].Text;
+        // 6. Click Delete Button
+        _mainWindow.DeleteStudent();
+        Assert.True(WaitUntil(() => _deleteConfirmation.SelectedStudentsList.Displayed));
+        var selectedListItems = _deleteConfirmation.SelectedStudentsList.FindElementsByClassName("ListViewItem");
+        Assert.NotEmpty(selectedListItems);
+        // Capture the text of the to-be-deleted item BEFORE confirming
+        var candidateText = selectedListItems[0].Text;
 
-            // 7. Click Yes Button
-            _deleteConfirmation.ConfirmDelete();
-            Assert.True(WaitUntil(() => ThrowsWebDriver(() => _deleteConfirmation.SelectedStudentsList.Displayed)));
-            // Verify student is deleted: wait until either row count decreases by 1 OR candidate text disappears
-            Assert.True(WaitUntil(() =>
-            {
-                var rows = _mainWindow.StudentDataGrid.FindElementsByXPath("//DataItem");
-                return rows.Count == rowsCountBefore - 1 || rows.All(r => !r.Text.Contains(candidateText));
-            }, timeoutMs: 4000), "Expected the selected student to be deleted from the grid.");
+        // 7. Click Yes Button
+        _deleteConfirmation.ConfirmDelete();
+        Assert.True(WaitUntil(() => ThrowsWebDriver(() => _deleteConfirmation.SelectedStudentsList.Displayed)));
+        // Verify student is deleted: wait until either row count decreases by 1 OR candidate text disappears
+        Assert.True(WaitUntil(() =>
+        {
+            var rows = _mainWindow.StudentDataGrid.FindElementsByXPath("//DataItem");
+            return rows.Count == rowsCountBefore - 1 || rows.All(r => !r.Text.Contains(candidateText));
+        }, timeoutMs: 4000), "Expected the selected student to be deleted from the grid.");
+
+        // Graph should still be present
+        Assert.True(_mainWindow.MarksPlotView.Displayed);
 
         // 8. Click Select All Checkbox at header
         var selectAllCheckbox = _mainWindow.StudentDataGrid.FindElementByAccessibilityId("SelectAllCheckBox");
@@ -105,6 +109,9 @@ public class DeleteConfirmationPageTests : IDisposable
             var remainingRows = _mainWindow.StudentDataGrid.FindElementsByXPath("//DataItem");
             return remainingRows.Count == 0;
         }, timeoutMs: 5000), "Expected all students to be deleted and the grid to be empty.");
+
+        // Graph still present (data empty handled by view model)
+        Assert.True(_mainWindow.MarksPlotView.Displayed);
     }
 
     private static bool ThrowsWebDriver(Func<bool> action)

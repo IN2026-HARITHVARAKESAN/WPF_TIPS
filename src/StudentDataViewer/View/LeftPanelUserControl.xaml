@@ -6,16 +6,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:StudentDataViewer.Views"
+             xmlns:oxy="http://oxyplot.org/wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1100">
+    <UserControl.Resources>
+        <local:MarkToHeightConverter x:Key="MarkToHeightConverter" />
+    </UserControl.Resources>
     <Grid>
-        <Border Grid.Column="0" Margin="10,75,20,30" BorderBrush="{StaticResource StandardGray}" BorderThickness="0,0,1,0" CornerRadius="0" Background="{StaticResource StandardWhite}" Opacity="50">
-            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,0,0,-31">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left: Table -->
+        <Border Grid.Column="0" Margin="10,75,10,30" BorderBrush="{StaticResource StandardGray}" BorderThickness="0,0,1,0" CornerRadius="0" Background="{StaticResource StandardWhite}">
+            <StackPanel Orientation="Vertical" Grid.Column="0">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{x:Static res:Strings.TitleStudentDataList}" FontFamily="Cascadia Mono" FontSize="16" Margin="10,5"/>
-                    <ComboBox Width="60" Height="25" IsEditable="False" Margin="10,0,0,0" AutomationProperties.AutomationId="SectionsComboBox" ItemsSource="{Binding SectionsWithAll}" SelectedItem="{Binding SelectedSection, Mode=TwoWay}"/>
-
+                    <ComboBox Width="80" Height="25" IsEditable="False" Margin="10,0,0,0" AutomationProperties.AutomationId="SectionsComboBox" ItemsSource="{Binding SectionsWithAll}" SelectedItem="{Binding SelectedSection, Mode=TwoWay}"/>
                 </StackPanel>
+
                 <DataGrid x:Name="StudentDataGrid" AutomationProperties.AutomationId="StudentDataGrid" ItemsSource="{Binding StudentsToDisplay}" AutoGenerateColumns="False" HeadersVisibility="Column" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" GridLinesVisibility="All" RowHeaderWidth="0"
                           Background="{StaticResource StandardWhite}" BorderThickness="0" Margin="12,0" Height="300" Width="auto"
                           RowBackground="{StaticResource StandardWhite}" Padding="0" SelectedItem="{Binding SelectedStudent, Mode=TwoWay}"
@@ -41,7 +51,7 @@
                             <Setter Property="Margin" Value="0"/>
                             <Setter Property="AutomationProperties.AutomationId" Value="StudentData"/>
                         </Style>
-                        </DataGrid.RowStyle>
+                    </DataGrid.RowStyle>
                     <DataGrid.CellStyle>
                         <Style TargetType="DataGridCell">
                             <Style.Triggers>
@@ -51,9 +61,9 @@
                                     <Setter Property="BorderThickness" Value="0"/>
                                 </Trigger>
                             </Style.Triggers>
-
                         </Style>
                     </DataGrid.CellStyle>
+
                     <DataGrid.Columns>
                         <DataGridTemplateColumn Width="30">
                             <DataGridTemplateColumn.Header>
@@ -71,9 +81,11 @@
                         <DataGridTextColumn Header="{x:Static res:Strings.TitleSection}" IsReadOnly="True" Width="*" Binding="{Binding Section}"/>
                         <DataGridTextColumn Header="{x:Static res:Strings.TitleYear}" IsReadOnly="True" Width="*" Binding="{Binding Year}"/>
                         <DataGridTextColumn Header="{x:Static res:Strings.TitleCGPA}" IsReadOnly="True" Width="*" Binding="{Binding Cgpa}"/>
+                        <DataGridTextColumn Header="Mark" IsReadOnly="True" Width="*" Binding="{Binding Mark}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,40,0">
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,22,0">
                     <Button x:Name="AddNewStudentButton" AutomationProperties.AutomationId="AddNewStudentButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" ToolTip="Add new student" BorderThickness="0" Padding="0" Click="AddNewStudentButton_Click">
                         <Border Background="{StaticResource DarkBlue}" CornerRadius="10" BorderThickness="2" Padding="10,5">
                             <TextBlock Text="{x:Static res:Strings.ButtonAddNewStudent}" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -91,6 +103,18 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
+        </Border>
+
+        <!-- Right: OxyPlot chart -->
+        <Border Grid.Column="1" Margin="0,75,10,30" BorderBrush="{StaticResource StandardGray}" BorderThickness="1" Background="{StaticResource StandardWhite}" AutomationProperties.AutomationId="MarksPlotView">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Marks Graph (ID vs Mark)" Margin="10" FontWeight="Bold"/>
+                <oxy:PlotView Grid.Row="1" Model="{Binding MarksPlot}" AutomationProperties.AutomationId="MarksPlotView" />
+            </Grid>
         </Border>
     </Grid>
 </UserControl>
