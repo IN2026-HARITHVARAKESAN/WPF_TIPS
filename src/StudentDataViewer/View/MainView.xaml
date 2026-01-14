@@ -22,8 +22,8 @@
                             <Setter Property="Margin" Value="0,0,10,0"/>
                         </Style>
                     </StackPanel.Resources>
-                    <Button x:Name="MinimizeButton" Width="25" Height="25" Style="{StaticResource WindowControlButtonStyle}" Content="&#x2015;" FontSize="16" ToolTip="Minimize" Cursor="Hand" Click="MinimizeButton_Click"/>
-                    <Button x:Name="CloseButton" Width="25" Height="25" Content="&#x2715;" Style="{StaticResource WindowControlButtonStyle}" FontSize="16" ToolTip="Close" Cursor="Hand" Click="CloseButton_Click"/>
+                    <Button x:Name="MinimizeButton" AutomationProperties.AutomationId="MinimizeButton" Width="25" Height="25" Style="{StaticResource WindowControlButtonStyle}" Content="&#x2015;" FontSize="16" ToolTip="Minimize" Cursor="Hand" Click="MinimizeButton_Click"/>
+                    <Button x:Name="CloseButton" AutomationProperties.AutomationId="CloseButton" Width="25" Height="25" Content="&#x2715;" Style="{StaticResource WindowControlButtonStyle}" FontSize="16" ToolTip="Close" Cursor="Hand" Click="CloseButton_Click"/>
                 </StackPanel>
             </DockPanel>
 

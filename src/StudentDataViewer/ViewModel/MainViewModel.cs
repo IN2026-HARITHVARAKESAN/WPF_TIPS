@@ -1,10 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 using StudentDataViewer.Models;
+using Microsoft.VisualStudio.DebuggerVisualizers;
+using StandaloneVisualizer;
 
 namespace StudentDataViewer.ViewModel
 {
@@ -141,6 +144,11 @@ namespace StudentDataViewer.ViewModel
             }
         }
 
+        /// <summary>
+        /// Command to show students in standalone visualizer
+        /// </summary>
+        public ICommand ShowVisualizerCommand { get; }
+
         #endregion
 
         #region Public Methods
@@ -168,6 +176,8 @@ namespace StudentDataViewer.ViewModel
             };
 
             BuildMarksPlot();
+
+            ShowVisualizerCommand = new RelayCommand(ShowVisualizer, CanShowVisualizer);
         }
 
         /// <summary>
@@ -303,6 +313,27 @@ namespace StudentDataViewer.ViewModel
         }
 
         private void BuildMarksPlot() => RefreshMarksPlot();
+
+        /// <summary>
+        /// Shows the standalone visualizer with current students data
+        /// </summary>
+        private void ShowVisualizer(object? parameter)
+        {
+            var dataToShow = StudentsToDisplay?.Count > 0 ? StudentsToDisplay : Students;
+            var subtitle = SelectedSection != null && SelectedSection != "ALL" 
+                ? $"Section: {SelectedSection} | Total Records: {dataToShow.Count}"
+                : $"All Sections | Total Records: {dataToShow.Count}";
+            
+            DataVisualizer.Show(dataToShow, "Student Data Visualizer", subtitle);
+        }
+
+        /// <summary>
+        /// Determines if the visualizer can be shown
+        /// </summary>
+        private bool CanShowVisualizer(object? parameter)
+        {
+            return Students?.Count > 0;
+        }
 
         #endregion
     }

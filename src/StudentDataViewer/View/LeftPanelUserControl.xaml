@@ -86,6 +86,15 @@
                 </DataGrid>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,22,0">
+                    <Button x:Name="ShowVisualizerButton" AutomationProperties.AutomationId="ShowVisualizerButton" 
+                            Width="145" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" 
+                            ToolTip="Show data in visualizer" BorderThickness="0" Padding="0" 
+                            Command="{Binding DataContext.ShowVisualizerCommand, ElementName=RootControl}">
+                        <Border Background="#9B59B6" CornerRadius="10" BorderThickness="2" Padding="10,5">
+                            <TextBlock Text="📊 View Data" Foreground="{StaticResource StandardWhite}" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </Button>
                     <Button x:Name="AddNewStudentButton" AutomationProperties.AutomationId="AddNewStudentButton" Width="130" Height="30" Background="Transparent" Foreground="{StaticResource StandardWhite}" ToolTip="Add new student" BorderThickness="0" Padding="0" Click="AddNewStudentButton_Click">
                         <Border Background="{StaticResource DarkBlue}" CornerRadius="10" BorderThickness="2" Padding="10,5">
                             <TextBlock Text="{x:Static res:Strings.ButtonAddNewStudent}" Foreground="{StaticResource StandardWhite}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
