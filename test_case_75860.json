@@ -1,0 +1,100 @@
+﻿{
+    "id":  75860,
+    "rev":  3,
+    "fields":  {
+                   "System.AreaPath":  "Magnum",
+                   "System.TeamProject":  "Magnum",
+                   "System.IterationPath":  "Magnum",
+                   "System.WorkItemType":  "Test Case",
+                   "System.State":  "Design",
+                   "System.Reason":  "New",
+                   "System.AssignedTo":  {
+                                             "displayName":  "Harithvarakesan Sakthivel",
+                                             "url":  "https://spsprodcin2.vssps.visualstudio.com/A94933cd1-34bf-45f4-8a18-45cb981e7998/_apis/Identities/f222245b-d76c-6419-b42f-1a3fed2413ad",
+                                             "_links":  {
+                                                            "avatar":  {
+                                                                           "href":  "https://dev.azure.com/Soliton/_apis/GraphProfile/MemberAvatars/aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk"
+                                                                       }
+                                                        },
+                                             "id":  "f222245b-d76c-6419-b42f-1a3fed2413ad",
+                                             "uniqueName":  "Harithvarakesan.bs@solitontech.com",
+                                             "imageUrl":  "https://dev.azure.com/Soliton/_apis/GraphProfile/MemberAvatars/aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk",
+                                             "descriptor":  "aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk"
+                                         },
+                   "System.CreatedDate":  "2025-12-22T09:35:33.89Z",
+                   "System.CreatedBy":  {
+                                            "displayName":  "Harithvarakesan Sakthivel",
+                                            "url":  "https://spsprodcin2.vssps.visualstudio.com/A94933cd1-34bf-45f4-8a18-45cb981e7998/_apis/Identities/f222245b-d76c-6419-b42f-1a3fed2413ad",
+                                            "_links":  {
+                                                           "avatar":  {
+                                                                          "href":  "https://dev.azure.com/Soliton/_apis/GraphProfile/MemberAvatars/aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk"
+                                                                      }
+                                                       },
+                                            "id":  "f222245b-d76c-6419-b42f-1a3fed2413ad",
+                                            "uniqueName":  "Harithvarakesan.bs@solitontech.com",
+                                            "imageUrl":  "https://dev.azure.com/Soliton/_apis/GraphProfile/MemberAvatars/aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk",
+                                            "descriptor":  "aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk"
+                                        },
+                   "System.ChangedDate":  "2025-12-24T09:35:15.62Z",
+                   "System.ChangedBy":  {
+                                            "displayName":  "Harithvarakesan Sakthivel",
+                                            "url":  "https://spsprodcin2.vssps.visualstudio.com/A94933cd1-34bf-45f4-8a18-45cb981e7998/_apis/Identities/f222245b-d76c-6419-b42f-1a3fed2413ad",
+                                            "_links":  {
+                                                           "avatar":  {
+                                                                          "href":  "https://dev.azure.com/Soliton/_apis/GraphProfile/MemberAvatars/aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk"
+                                                                      }
+                                                       },
+                                            "id":  "f222245b-d76c-6419-b42f-1a3fed2413ad",
+                                            "uniqueName":  "Harithvarakesan.bs@solitontech.com",
+                                            "imageUrl":  "https://dev.azure.com/Soliton/_apis/GraphProfile/MemberAvatars/aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk",
+                                            "descriptor":  "aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk"
+                                        },
+                   "System.CommentCount":  0,
+                   "System.Title":  "[Appium Learning] Delete Functionality Test | StudentDataViewer Application Tests",
+                   "Microsoft.VSTS.Common.StateChangeDate":  "2025-12-22T09:35:33.89Z",
+                   "Microsoft.VSTS.Common.ActivatedDate":  "2025-12-22T09:35:33.89Z",
+                   "Microsoft.VSTS.Common.ActivatedBy":  {
+                                                             "displayName":  "Harithvarakesan Sakthivel",
+                                                             "url":  "https://spsprodcin2.vssps.visualstudio.com/A94933cd1-34bf-45f4-8a18-45cb981e7998/_apis/Identities/f222245b-d76c-6419-b42f-1a3fed2413ad",
+                                                             "_links":  {
+                                                                            "avatar":  {
+                                                                                           "href":  "https://dev.azure.com/Soliton/_apis/GraphProfile/MemberAvatars/aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk"
+                                                                                       }
+                                                                        },
+                                                             "id":  "f222245b-d76c-6419-b42f-1a3fed2413ad",
+                                                             "uniqueName":  "Harithvarakesan.bs@solitontech.com",
+                                                             "imageUrl":  "https://dev.azure.com/Soliton/_apis/GraphProfile/MemberAvatars/aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk",
+                                                             "descriptor":  "aad.ZjIyMjI0NWItZDc2Yy03NDE5LWI0MmYtMWEzZmVkMjQxM2Fk"
+                                                         },
+                   "Microsoft.VSTS.Common.Priority":  2,
+                   "Microsoft.VSTS.TCM.AutomationStatus":  "Planned",
+                   "Microsoft.VSTS.TCM.Steps":  "\u003csteps id=\"0\" last=\"11\"\u003e\u003cstep id=\"2\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Navigate to StudentDataViewer Application and Open it.\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Main window of the application should open with Student\u0027s data grid and 3 buttons (Add, Edit and Delete Students)\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"3\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click On Delete Button\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Delete Student Window should be opened with Empty Students Data grid, Yes and No button\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"4\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click on No button in the Delete Student Window\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Delete Student window should be closed.\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"5\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click on Student Data List drop down and select \"ALL\"\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;All students\u0027 details should be displayed in the students data grid below.\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"6\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click checkbox of the first student in the Students data table\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;The clicked checkbox should be checked. \u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"7\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click on the delete button\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Delete Student Window should be opened, and the details of the checked student should be shown in the table\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"8\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click Yes Button\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;P\u0026gt;Delete Student Window should be closed.\u0026lt;BR/\u0026gt;The checked student details should be deleted from the data and should not be shown in the table in main window. \u0026lt;BR/\u0026gt;The deleted students mark should not be shown in the graph.\u0026lt;/P\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"9\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click of Select All Checkbox at the header of the table\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Check box of all the students in the table should be checked.\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"10\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click delete button\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Delete Student window should be shown with the details of all the students.\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003cstep id=\"11\" type=\"ValidateStep\"\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;DIV\u0026gt;\u0026lt;P\u0026gt;Click Yes button\u0026lt;/P\u0026gt;\u0026lt;/DIV\u0026gt;\u003c/parameterizedString\u003e\u003cparameterizedString isformatted=\"true\"\u003e\u0026lt;P\u0026gt;Delete student window should be closed.\u0026lt;BR/\u0026gt;All the students should be deleted from the list is not shown in main window table. \u0026lt;/P\u0026gt;The deleted students mark should not be shown in the graph.\u003c/parameterizedString\u003e\u003cdescription/\u003e\u003c/step\u003e\u003c/steps\u003e"
+               },
+    "multilineFieldsFormat":  {
+                                  "Microsoft.VSTS.TCM.Steps":  "html"
+                              },
+    "_links":  {
+                   "self":  {
+                                "href":  "https://dev.azure.com/Soliton/1171aacf-b1d2-4673-a9d1-e025444423da/_apis/wit/workItems/75860"
+                            },
+                   "workItemUpdates":  {
+                                           "href":  "https://dev.azure.com/Soliton/1171aacf-b1d2-4673-a9d1-e025444423da/_apis/wit/workItems/75860/updates"
+                                       },
+                   "workItemRevisions":  {
+                                             "href":  "https://dev.azure.com/Soliton/1171aacf-b1d2-4673-a9d1-e025444423da/_apis/wit/workItems/75860/revisions"
+                                         },
+                   "workItemComments":  {
+                                            "href":  "https://dev.azure.com/Soliton/1171aacf-b1d2-4673-a9d1-e025444423da/_apis/wit/workItems/75860/comments"
+                                        },
+                   "html":  {
+                                "href":  "https://dev.azure.com/Soliton/1171aacf-b1d2-4673-a9d1-e025444423da/_workitems/edit/75860"
+                            },
+                   "workItemType":  {
+                                        "href":  "https://dev.azure.com/Soliton/1171aacf-b1d2-4673-a9d1-e025444423da/_apis/wit/workItemTypes/Test%20Case"
+                                    },
+                   "fields":  {
+                                  "href":  "https://dev.azure.com/Soliton/1171aacf-b1d2-4673-a9d1-e025444423da/_apis/wit/fields"
+                              }
+               },
+    "url":  "https://dev.azure.com/Soliton/1171aacf-b1d2-4673-a9d1-e025444423da/_apis/wit/workItems/75860"
+}

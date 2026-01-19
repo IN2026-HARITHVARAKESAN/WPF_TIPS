@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentDataViewer", "src\St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentDataViewerTests", "tests\unit\StudentDataViewerTests\StudentDataViewerTests.csproj", "{FC64D7D2-867F-46DA-A684-ECF29D3D7E1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentDataViewer.UITests", "tests\ui\StudentDataViewer.UITests\StudentDataViewer.UITests.csproj", "{87684386-E43F-0BEB-E2BE-D5199B969F17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{FC64D7D2-867F-46DA-A684-ECF29D3D7E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC64D7D2-867F-46DA-A684-ECF29D3D7E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC64D7D2-867F-46DA-A684-ECF29D3D7E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87684386-E43F-0BEB-E2BE-D5199B969F17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87684386-E43F-0BEB-E2BE-D5199B969F17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87684386-E43F-0BEB-E2BE-D5199B969F17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87684386-E43F-0BEB-E2BE-D5199B969F17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{97C22B94-6F5C-4C7D-BD39-76841DD348DC} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{0E92FEB2-7F09-FA13-351E-B94C5F552395} = {DCAA095E-2796-41FA-A1D0-1134E29309E7}
 		{FC64D7D2-867F-46DA-A684-ECF29D3D7E1A} = {C778E127-C02C-4A37-8E85-3D86DCC063DC}
+		{87684386-E43F-0BEB-E2BE-D5199B969F17} = {C778E127-C02C-4A37-8E85-3D86DCC063DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CECB66-8E11-49D9-AA1E-464EE0231450}
